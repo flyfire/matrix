@@ -25,7 +25,7 @@ import android.support.v7.app.AppCompatActivity;
 
 
 public class SplashActivity extends AppCompatActivity {
-    private static String TAG = "Matrix.SplashActivity";
+    private static String TAG = "Matrix.Matrix.SplashActivity";
     private static HandlerThread sHandlerThread;
 
     @Override

@@ -13,7 +13,7 @@ import static sample.tencent.matrix.MatrixApplication.getContext;
 
 public class TestStartUpActivity extends Activity {
 
-    private static final String TAG = "TestStartUpActivity";
+    private static final String TAG = "Matrix.TestStartUpActivity";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

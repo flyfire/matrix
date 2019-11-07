@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class TestSQLiteLintHelper {
-    private final static String TAG = "TestSQLiteLintHelper";
+    private final static String TAG = "Matrix.TestSQLiteLintHelper";
 
     public static String[] getTestSqlList() {
         String[] list = new String[]{

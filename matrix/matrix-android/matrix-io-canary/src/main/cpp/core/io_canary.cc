@@ -19,6 +19,7 @@
 //
 
 #include "io_canary.h"
+#include <android/log.h>
 #include <thread>
 #include "detector/detector.h"
 #include "detector/main_thread_detector.h"
@@ -44,6 +45,7 @@ namespace iocanary {
 
 
     void IOCanary::SetIssuedCallback(OnPublishIssueCallback issued_callback) {
+        __android_log_print(ANDROID_LOG_INFO, "iocanary.IOCanary", "SetIssuedCallback");
         issued_callback_ = issued_callback;
     }
 
@@ -138,7 +140,7 @@ namespace iocanary {
         exit_ = true;
         lock.unlock();
         queue_cv_.notify_one();
-
+        __android_log_print(ANDROID_LOG_INFO, "Matrix.IOCanary", "dectors size:%d", detectors_.size());
         detectors_.clear();
     }
 }

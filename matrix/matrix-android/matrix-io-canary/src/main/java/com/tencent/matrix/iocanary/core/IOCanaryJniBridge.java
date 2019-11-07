@@ -34,7 +34,7 @@ public class IOCanaryJniBridge {
     private static boolean sIsLoadJniLib;
 
     public static void install(IOConfig config, OnJniIssuePublishListener listener) {
-        MatrixLog.v(TAG, "install sIsTryInstall:%b", sIsTryInstall);
+        MatrixLog.i(TAG, "install sIsTryInstall:%b", sIsTryInstall);
         if (sIsTryInstall) {
             return;
         }
@@ -78,6 +78,7 @@ public class IOCanaryJniBridge {
     }
 
     public static void uninstall() {
+        MatrixLog.i(TAG, "uninstall");
         if (!sIsTryInstall) {
             return;
         }

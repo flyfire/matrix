@@ -36,7 +36,7 @@ import sample.tencent.matrix.issue.IssuesMap;
 
 public class TestPluginListener extends DefaultPluginListener {
 
-    public static final String TAG = "TestPluginListener";
+    public static final String TAG = "Matrix.TestPluginListener";
 
     public SoftReference<Context> softReference;
 

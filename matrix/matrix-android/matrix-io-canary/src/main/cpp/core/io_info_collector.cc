@@ -21,20 +21,22 @@
 
 #include "io_info_collector.h"
 #include <thread>
+#include <android/log.h>
 #include "comm/io_canary_utils.h"
 
 namespace iocanary {
 
+
     void IOInfoCollector::OnOpen(const char *pathname, int flags, mode_t mode
             , int open_ret, const JavaContext& java_context) {
-        //__android_log_print(ANDROID_LOG_DEBUG, kTag, "OnOpen fd:%d; path:%s", open_ret, pathname);
+        __android_log_print(ANDROID_LOG_VERBOSE, "IOInfoCollector", "OnOpen fd:%d; path:%s", open_ret, pathname);
 
         if (open_ret == -1) {
             return;
         }
 
         if (info_map_.find(open_ret) != info_map_.end()) {
-            //__android_log_print(ANDROID_LOG_WARN, kTag, "OnOpen fd:%d already in info_map_", open_ret);
+            __android_log_print(ANDROID_LOG_WARN, "IOInfoCollector", "OnOpen fd:%d already in info_map_", open_ret);
             return;
         }
 
@@ -50,7 +52,7 @@ namespace iocanary {
         }
 
         if (info_map_.find(fd) == info_map_.end()) {
-             //__android_log_print(ANDROID_LOG_DEBUG, kTag, "OnRead fd:%d not in info_map_", fd);
+             __android_log_print(ANDROID_LOG_DEBUG, "IOInfoCollector", "OnRead fd:%d not in info_map_", fd);
             return;
         }
 
@@ -65,7 +67,7 @@ namespace iocanary {
         }
 
         if (info_map_.find(fd) == info_map_.end()) {
-            //__android_log_print(ANDROID_LOG_DEBUG, kTag, "OnWrite fd:%d not in info_map_", fd);
+            __android_log_print(ANDROID_LOG_DEBUG, "IOInfoCollector", "OnWrite fd:%d not in info_map_", fd);
             return;
         }
 
@@ -73,9 +75,10 @@ namespace iocanary {
     }
 
     std::shared_ptr<IOInfo> IOInfoCollector::OnClose(int fd, int close_ret) {
+        __android_log_print(ANDROID_LOG_DEBUG, "IOInfoCollector", "OnClose fd:%d, close ret:%d", fd, close_ret);
 
         if (info_map_.find(fd) == info_map_.end()) {
-            //__android_log_print(ANDROID_LOG_DEBUG, kTag, "OnClose fd:%d not in info_map_", fd);
+            __android_log_print(ANDROID_LOG_WARN, "IOInfoCollector", "OnClose fd:%d not in info_map_", fd);
             return nullptr;
         }
 

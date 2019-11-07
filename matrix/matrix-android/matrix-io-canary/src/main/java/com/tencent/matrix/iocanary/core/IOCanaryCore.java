@@ -22,6 +22,7 @@ import com.tencent.matrix.iocanary.detect.CloseGuardHooker;
 import com.tencent.matrix.iocanary.util.IOCanaryUtil;
 import com.tencent.matrix.report.Issue;
 import com.tencent.matrix.report.IssuePublisher;
+import com.tencent.matrix.util.MatrixLog;
 
 import java.util.List;
 
@@ -76,6 +77,7 @@ public class IOCanaryCore implements OnJniIssuePublishListener, IssuePublisher.O
 
     private void initDetectorsAndHookers(IOConfig ioConfig) {
         assert ioConfig != null;
+        MatrixLog.i(TAG, ioConfig.toString());
 
         if (ioConfig.isDetectFileIOInMainThread()
             || ioConfig.isDetectFileIOBufferTooSmall()
